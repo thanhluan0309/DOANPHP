@@ -36,5 +36,21 @@ class userController {
       return console.log(error);
     }
   }
+  async userLogin(req, res) {
+    try {
+      const { username, password } = req.body;
+      if ((!username, !password)) {
+        return res.status(400).json({ success: false });
+      } else {
+        const userlogin = await User.findOne({
+          username: username,
+          password: password,
+        });
+        return res.status(200).json({ success: true, userLogin: userlogin });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 module.exports = new userController();

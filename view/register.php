@@ -16,19 +16,10 @@
 </script>
 
 <body>
-    <!-- <h1>login</h1>
-    <?php echo "My first PHP script!";    ?>
-    <?php require('../model/user.php');
-    $user = new User("luan", "password no one known");
-    ?>
-
-    <div>User name : <?php echo $user->getName() ?></div>
-    <div>password : <?php echo $user->getpassword() ?></div> -->
-
     <div class="page">
         <div class="container">
             <div class="left">
-                <div class="login">Login</div>
+                <div class="login">Register</div>
                 <div class="eula">By logging in you agree to the ridiculously long terms that you didn't bother to read</div>
             </div>
             <div class="right">
@@ -41,12 +32,14 @@
                     </defs>
                     <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
                 </svg>
-                <div class="form">
-                    <label for="email">Email</label>
-                    <input type="email" id="email">
+                <div style="margin-top: -42px" class="form">
+                    <label for="email">username</label>
+                    <input type="text" id="email">
                     <label for="password">Password</label>
                     <input type="password" id="password">
-                    <a href="/DOANPHP/view/register.php">Register</a>
+                    <label for="password">Re-password</label>
+                    <input type="password" id="password">
+                    <a href="/DOANPHP/view/login.php">login</a>
                     <input type="submit" id="submit" value="Submit">
                 </div>
             </div>
