@@ -13,7 +13,6 @@ const connect = async () => {
     console.log(error);
   }
 };
-
 app.use(express.json());
 connect();
 app.get("/", (req, res) => {
