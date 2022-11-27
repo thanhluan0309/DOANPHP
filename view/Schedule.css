@@ -1,0 +1,35 @@
+.FormSchedule {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    
+    overflow-x: scroll;
+    padding: 10px;
+}
+.schedule{
+    width: 236px;
+    height: 450px;
+    padding: 10px;
+    max-height: 450px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow-y: scroll;
+}
+.schedule-Header {
+    display: flex;
+    text-decoration: dotted;
+    align-items: center;
+}
+.schedule-Body_edit {
+    margin-left: 10px;
+    border: #efdbbf solid;
+    width: 13%;
+    margin-top: 7px;
+    border-radius: 7px;
+    text-decoration: none;
+}
+.schedule-Body {
+}
