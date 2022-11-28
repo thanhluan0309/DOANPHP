@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cores = require("cors");
 dotenv.config();
-
+app.use(cores());
 const routerUser = require("./router/user");
 const connect = async () => {
   try {
