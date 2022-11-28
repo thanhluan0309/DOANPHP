@@ -9,10 +9,7 @@
     <link rel="stylesheet" href="logincss.scss">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<script src="../callApi/userBehavior.js">
-</script>
-<script>
-    temp("asdasdas");
+<script src="../callApi/userCallApi.js">
 </script>
 
 <body>
@@ -32,15 +29,15 @@
                     </defs>
                     <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
                 </svg>
-                <div style="margin-top: -42px" class="form">
-                    <label for="email">username</label>
-                    <input type="text" id="email">
+                <div style="margin-top: 2px" class="form">
+                    <label for="username">username</label>
+                    <input type="text" id="username">
                     <label for="password">Password</label>
                     <input type="password" id="password">
-                    <label for="password">Re-password</label>
-                    <input type="password" id="password">
+                    <label for="repassword">Re-password</label>
+                    <input type="password" id="repassword">
                     <a href="/DOANPHP/view/login.php">login</a>
-                    <input type="submit" id="submit" value="Submit">
+                    <input type="button" onclick="handleRegister()" id="submit" value="Submit">
                 </div>
             </div>
         </div>
@@ -49,55 +46,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <script>
-    var current = null;
-    document.querySelector('#email').addEventListener('focus', function(e) {
-        if (current) current.pause();
-        current = anime({
-            targets: 'path',
-            strokeDashoffset: {
-                value: 0,
-                duration: 700,
-                easing: 'easeOutQuart'
-            },
-            strokeDasharray: {
-                value: '240 1386',
-                duration: 700,
-                easing: 'easeOutQuart'
-            }
-        });
-    });
-    document.querySelector('#password').addEventListener('focus', function(e) {
-        if (current) current.pause();
-        current = anime({
-            targets: 'path',
-            strokeDashoffset: {
-                value: -336,
-                duration: 700,
-                easing: 'easeOutQuart'
-            },
-            strokeDasharray: {
-                value: '240 1386',
-                duration: 700,
-                easing: 'easeOutQuart'
-            }
-        });
-    });
-    document.querySelector('#submit').addEventListener('focus', function(e) {
-        if (current) current.pause();
-        current = anime({
-            targets: 'path',
-            strokeDashoffset: {
-                value: -730,
-                duration: 700,
-                easing: 'easeOutQuart'
-            },
-            strokeDasharray: {
-                value: '530 1386',
-                duration: 700,
-                easing: 'easeOutQuart'
-            }
-        });
-    });
+    const handleRegister = async () => {
+        const formRegsiter = {
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+        }
+        if (formRegsiter.password !== document.getElementById("repassword").value) {
+            alert('password not uniformity')
+            return;
+        }
+        const res = await register(formRegsiter);
+        if (res.success) {
+            alert(`${res.message}`)
+            window.location.href = "http://localhost/DOANPHP/view/login.php";
+        } else {
+            alert(`${res.message}`)
+        }
+    }
 </script>
 
 </html>
