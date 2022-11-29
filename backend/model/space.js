@@ -15,6 +15,27 @@ const spaceSchema = new Schema({
         type: String,
         required: false
     },
+    private: {
+        type: Boolean,
+        required: true,
+        default: 0
+    },
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: "Users"
+    },
+    tasks: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Task"
+        }
+    ],
+    members: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Users"
+        }
+    ],
 }, {timestamps: true});
 
 module.exports = mongoose.model('Space', spaceSchema);
