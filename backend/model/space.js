@@ -1,0 +1,20 @@
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const spaceSchema = new Schema({
+    spaceID: {
+        type: String,
+        required: true,
+    },
+    spaceName: {
+        type: String,
+        required: true,
+    },
+    title: {
+        type: String,
+        required: false
+    },
+}, {timestamps: true});
+
+module.exports = mongoose.model('Space', spaceSchema);
