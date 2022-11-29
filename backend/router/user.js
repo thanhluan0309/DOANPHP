@@ -5,5 +5,5 @@ const router = express.Router();
 
 router.post("/", user.userRegister);
 router.post("/login", user.userLogin);
-
+router.get("/", user.getAlluser);
 module.exports = router;
