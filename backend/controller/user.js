@@ -73,5 +73,13 @@ class userController {
       console.log(error);
     }
   }
+  async getAllUser(req, res) {
+    try {
+      const spaces = await User.find();
+        return res.status(200).json({success: true, data: spaces });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 module.exports = new userController();

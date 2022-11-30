@@ -2,8 +2,23 @@ const space = require('../model/space');
 
 const SpaceController = {
     getAllSpace: async (req, res) => {
-        const spaces = await space.find().populate('createdBy');
-        return res.status(200).json({ data: spaces });
+        const spaces = await space.find().populate('createdBy members');
+        return res.status(200).json({success: true, data: spaces });
+    },
+    getOneSpace: async (req, res) => {
+        const spaceID = req.params.spaceID;
+        const existSpace = await space.findOne({spaceID: spaceID}).populate('createdBy members');
+        if (existSpace) {
+            return res.status(200).json({
+                success: true,
+                space: existSpace
+            })
+        } else {
+            return res.status(403).json({
+                success: false,
+                message: "Space not found"
+            })
+        }
     },
     createSpace: async (req, res) => {
         let spaceID = req.body.spaceID;
@@ -26,7 +41,7 @@ const SpaceController = {
                 title: title,
                 private: private,
                 createdBy: createdBy,
-                //members: members
+                members: members
             }
             const newSpace = await space.create(spaceObj);
             return res.status(200).json({
@@ -37,6 +52,46 @@ const SpaceController = {
             return res.status(403).json({
                 success: false,
                 message: "This Space ID have already existed"
+            })
+        }
+    },
+    updateSpace: async (req, res) => {
+        const spaceID = req.params.spaceID;
+        const existSpace = await space.findOne({spaceID: spaceID});
+        if (existSpace) {
+            const checkSpaceID = await space.findOne({spaceID: req.body.spaceID});
+            if (req.body.spaceID == spaceID || !checkSpaceID) {
+                const editedSpace = await space.findOneAndUpdate({spaceID: spaceID}, req.body);
+                return res.status(200).json({
+                    success: true,
+                    message: "Update space success"
+                })
+            } else {
+                return res.status(400).json({
+                    success: false,
+                    message: "Space ID has been existed"
+                })
+            }           
+        } else {
+            return res.status(403).json({
+                success: false,
+                message: "Space not found"
+            })
+        }
+    },
+    deleteSpace: async (req, res) => {
+        const spaceID = req.params.spaceID;
+        const existSpace = await space.findOne({spaceID: spaceID});
+        if (existSpace) {
+            const deletedSpace = await space.findOneAndDelete({spaceID: spaceID});
+            return res.status(200).json({
+                success: true,
+                message: "Delete space success"
+            })
+        } else {
+            return res.status(403).json({
+                success: false,
+                message: "Delete fail"
             })
         }
     }
