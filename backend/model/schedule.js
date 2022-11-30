@@ -3,11 +3,11 @@ const scheduleSchema = new mongoose.Schema({
   title: {
     type: String,
   },
-  date: {
-    type: String,
-  },
   content: {
     type: String,
+  },
+  date : {
+    type:String,
   },
   ispublic: {
     type: Boolean,

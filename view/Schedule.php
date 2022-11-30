@@ -10,7 +10,17 @@
 </head>
 
 <body>
-    <?php include("./setupBootstrap.php") ?>
+    <?php include("./setupBootstrap.php");
+    include("../callApi/schedulecallApi.php");
+    include("../model/schedule.php");
+
+    $schedulebehavior = new scheduleCallApi();
+
+    $make_call = $schedulebehavior->getallschedule('GET', 'http://localhost:6969/schedule/', false);
+    $schedulepublic = json_decode($make_call, true)['schedulepublic'];
+    $scheduleprivate = json_decode($make_call, true)['scheduleprivate'];
+
+    ?>
 
     <div class="canvas">
 
@@ -58,34 +68,51 @@
                 </div>
     </div>
     <br />
-    <div class="FormSchedule">
+    <div style="height: 1500px" class="FormSchedule">
+
         <?php
+        $listpublic = array();
+        foreach ($schedulepublic as $obj) {
+            $listschedulepublic = new schedule();
+            $listschedulepublic->title = $obj['title'];
+            $listschedulepublic->date = $obj['date'];
+            $listschedulepublic->content = $obj['content'];
+            array_push($listpublic, $listschedulepublic);
+        }
 
         for ($i = 1; $i <= $n; $i++) {
             echo '<div class="schedule shadow border">
             <div class="schedule-Header border">
-                <span style="margin: auto">' . $i . '/11/2022</span>
-
+                <span id="date' . $i . '/' . $month . '/' . '2022" style="margin: auto">' . $i . '/' . $month . '/2022</span>
             </div>
             <div class="schedule-Body">
-                <div class="schedule-Body_edit">✏
+                <div style="cursor: pointer" id="' . $i . '/' . $month . '/' . '2022" onclick="gotoaddschedule(event)" class="schedule-Body_edit">✏
 
                 </div>
                 <br />
-                <ul class="schedule-Body_listItem">
-                    <li class="schedule-Body_Item">
-                        luan - offf
+                <ul class="schedule-Body_listItem">'; ?>
+        <?php
+            $chuoi = $i . "/" . $month . "/" . "2022";
+            foreach ($listpublic as $car) {
+                if ($chuoi === $car->date) {
+                    echo '<li class="schedule-Body_Item">
+                        ' . $car->title . '
                         <hr />
-                    </li>
-                    <li class="schedule-Body_Item">
-                        luan - tang luong
-                        <hr />
-                    </li>
-                </ul>
-            </div>
-        </div>';
+                    </li>';
+                }
+            }
+            echo ' </ul>
+                </div>
+            </div>';
         }
         ?>
+        <script>
+            const gotoaddschedule = (event) => {
+                console.log("date" + event.target.id)
+                console.log("get date", document.getElementById(`date${event.target.id}`))
+                window.location.href = "http://localhost/DOANPHP/view/addschedule.php?date=" + event.target.id;
+            }
+        </script>
     </div>
 
 </body>

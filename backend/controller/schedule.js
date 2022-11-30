@@ -15,13 +15,12 @@ class scheduleController {
       } else {
         const newSchedule = Schedule({
           title: title,
-          date: date,
           content: content,
+          date: date,
           ispublic: ispublic,
           user: req.UserExit,
           ListUserAccess: ListUserAccess,
         });
-        console.log("user ", req.UserExit);
         await newSchedule.save();
         return res.status(200).json({
           success: true,
@@ -29,6 +28,22 @@ class scheduleController {
           newschedule: newSchedule,
         });
       }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async getAllschedule(req, res) {
+    try {
+      const schedulePublic = await Schedule.find({ ispublic: true });
+
+      const schedulePrivate = await Schedule.find({ ispublic: false });
+      return res
+        .status(200)
+        .json({
+          success: true,
+          schedulepublic: schedulePublic,
+          scheduleprivate: schedulePrivate,
+        });
     } catch (error) {
       console.log(error);
     }

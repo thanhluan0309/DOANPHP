@@ -26,12 +26,14 @@ Content-Type: application/json
 ###
 POST http://localhost:6969/schedule/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg0NTAwZTk4NTZhNjc2OTZjMmM1NjAiLCJpYXQiOjE2Njk2MTc5Mzl9.5IteFed6lJKAc5ldKaPtMu-ipOdGdSoUWU0chxVMiv8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg0MjM3ZGM5MGZiYmRiMjlkNjhkMDkiLCJpYXQiOjE2Njk3NDI4MDZ9.daoOBJnhFCqFmfsdYnZ39QYWHQ5DtgH_BedwFuYnxPw
 
 {
     "title":"off",
-    "date":"11/28/2022",
     "content":"Ban viec hoc tren truong",
     "ispublic":true,
     "ListUserAccess":[]
 }
+//get all schedule
+###
+GET http://localhost:6969/schedule/

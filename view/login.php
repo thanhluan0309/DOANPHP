@@ -52,8 +52,10 @@
             password: document.getElementById('password').value
         }
         const res = await login(formlogin)
+
         if (res.success) {
             alert(`${res.message}`)
+            localStorage.setItem("token", res.accesstoken)
             window.location.href = "http://localhost/DOANPHP/view/dashboard.php";
         } else {
             alert(`${res.message}`)
