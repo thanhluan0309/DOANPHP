@@ -9,12 +9,17 @@ const taskSchema = new Schema({
     },
     title: {
         type: String,
-        required: false
     },
     description: {
         type: String,
     },
-    space: {type: Schema.Types.ObjectId, ref: "Space"}
+    success: {
+        type: Boolean
+    },
+    space: {type: Schema.Types.ObjectId, ref: "Space"},
+    comments: [
+        {type: Schema.Types.ObjectId, ref: "Comment"}
+    ]
 }, {timestamps: true});
 
 module.exports = mongoose.model('Task', taskSchema);

@@ -3,7 +3,7 @@ const verifyToken = require('../midleware/user');
 
 const router = require('express').Router();
 
-router.get('/', spaceController.getAllSpace)
+router.get('/', verifyToken, spaceController.getAllSpace)
     .post('/', verifyToken, spaceController.createSpace)
     .put('/:spaceID', spaceController.updateSpace)
     .delete('/:spaceID', spaceController.deleteSpace)

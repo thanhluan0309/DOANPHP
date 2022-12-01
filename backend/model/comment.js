@@ -9,8 +9,12 @@ const commentSchema = new Schema({
     },
     cmtBy: {
         type: Schema.Types.ObjectId,
-        ref: "Task"
+        ref: "Users"
     },
+    task: {
+        type: Schema.Types.ObjectId,
+        ref: "Task"
+    }
 }, {timestamps: true});
 
 module.exports = mongoose.model('Comment', commentSchema);
