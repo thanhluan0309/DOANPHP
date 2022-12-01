@@ -56,6 +56,7 @@
         if (res.success) {
             alert(`${res.message}`)
             localStorage.setItem("token", res.accesstoken)
+            localStorage.setItem("username", res.userLogin.username)
             window.location.href = "http://localhost/DOANPHP/view/dashboard.php";
         } else {
             alert(`${res.message}`)

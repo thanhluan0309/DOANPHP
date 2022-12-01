@@ -6,20 +6,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule</title>
-    <link rel="stylesheet" href="Schedule.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="schedule.css">
 </head>
 
 <body>
-    <?php include("./setupBootstrap.php");
+    <script>
+        document.cookie = `username=${localStorage.getItem("username")}`;
+        $(document).ready(function() {
+            if (localStorage.getItem("reload") === "true") {
+                localStorage.setItem("reload", false)
+                window.location.reload();
+            }
+        });
+    </script>
+    <?php
+    include("./setupBootstrap.php");
     include("../callApi/schedulecallApi.php");
     include("../model/schedule.php");
 
     $schedulebehavior = new scheduleCallApi();
 
     $make_call = $schedulebehavior->getallschedule('GET', 'http://localhost:6969/schedule/', false);
+
+
     $schedulepublic = json_decode($make_call, true)['schedulepublic'];
     $scheduleprivate = json_decode($make_call, true)['scheduleprivate'];
 
+    $isuser = $_COOKIE['username'];
+    $listpublic = array();
+    $listprivate = array();
+
+    foreach ($scheduleprivate as $obj) {
+        $listscheduleprivate = new scheduleprivate();
+
+        $listscheduleprivate->_id = $obj['_id'];
+        $listscheduleprivate->title = $obj['title'];
+        $listscheduleprivate->date = $obj['date'];
+        $listscheduleprivate->content = $obj['content'];
+        if (in_array($isuser, $obj['ListUserAccess'])) {
+            array_push($listprivate, $listscheduleprivate);
+        }
+    }
+
+    foreach ($schedulepublic as $obj) {
+        $listschedulepublic = new schedule();
+        $listschedulepublic->_id = $obj['_id'];
+        $listschedulepublic->title = $obj['title'];
+        $listschedulepublic->date = $obj['date'];
+        $listschedulepublic->content = $obj['content'];
+        array_push($listpublic, $listschedulepublic);
+    }
     ?>
 
     <div class="canvas">
@@ -69,17 +106,9 @@
     </div>
     <br />
     <div style="height: 1500px" class="FormSchedule">
-
         <?php
-        $listpublic = array();
-        foreach ($schedulepublic as $obj) {
-            $listschedulepublic = new schedule();
-            $listschedulepublic->title = $obj['title'];
-            $listschedulepublic->date = $obj['date'];
-            $listschedulepublic->content = $obj['content'];
-            array_push($listpublic, $listschedulepublic);
-        }
-
+        $listall = array_merge($listprivate, $listpublic);
+        // print_r($listall);
         for ($i = 1; $i <= $n; $i++) {
             echo '<div class="schedule shadow border">
             <div class="schedule-Header border">
@@ -93,9 +122,9 @@
                 <ul class="schedule-Body_listItem">'; ?>
         <?php
             $chuoi = $i . "/" . $month . "/" . "2022";
-            foreach ($listpublic as $car) {
+            foreach ($listall as $car) {
                 if ($chuoi === $car->date) {
-                    echo '<li class="schedule-Body_Item">
+                    echo '<li data-value="' . $car->date . '"  onclick="editschedule(event)" id="' . $car->_id . '" class="schedule-Body_Item">
                         ' . $car->title . '
                         <hr />
                     </li>';
@@ -107,9 +136,10 @@
         }
         ?>
         <script>
+            const editschedule = (event) => {
+                window.location.href = `http://localhost/DOANPHP/view/DetailSchedule.php?id=${event.target.id}&date=${document.getElementById(event.target.id).getAttribute('data-value')}`;
+            }
             const gotoaddschedule = (event) => {
-                console.log("date" + event.target.id)
-                console.log("get date", document.getElementById(`date${event.target.id}`))
                 window.location.href = "http://localhost/DOANPHP/view/addschedule.php?date=" + event.target.id;
             }
         </script>

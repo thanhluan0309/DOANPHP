@@ -107,7 +107,11 @@ $data = json_decode($make_call, true)['alluser'];
         const date = urlParams.get('date');
         const arraylistuser = [];
         for (let i = 0; i <= list.length - 1; i++) {
-          arraylistuser.push(list[i].id);
+          if (list[i].innerHTML !== "") {
+
+            arraylistuser.push(list[i].innerHTML.trim());
+          }
+
         }
         const formaddschedule = {
           title: document.getElementById('cars').value + " - " + document.getElementById('title').value,
