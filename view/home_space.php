@@ -151,19 +151,74 @@
                </div>
             </div>
          </div>
+         <!-- //select agent -->
          <div class="select-agent col-md-4" style="background-color: white; margin: 10px; border-radius: 1%;  ">
+            <label style="color: blue;  display: block;text-align: center; ; font-size: 24px ;font-weight: 800; ">SELECT
+               USER</label>
+            <div class="mb-3">
+               <label for="user">Updated: </h1>
+                  <h4 id="user">User name</h4>
+            </div>
+            <form style="margin: 10px ; background-color: #00BFFF;">
+               <div class="form-floating" style="margin: 10px ; border-radius: 2px;">
+                  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                     style="height: 100px"></textarea>
+                  <label for="floatingTextarea2">Comments</label>
+               </div>
+               <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+               </div>
+               <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+
+            <div class="comment" style="display:inline-block; align-content: center;">
+               <div class="card mb-3" style="max-width: 540px;">
+                  <div class="row g-0">
+                     <div class="col-md-4">
+                        <img src="..." class="img-fluid rounded-start" alt="...">
+                     </div>
+                     <div class="col-md-8">
+                        <div class="card-body">
+                           <h5 class="card-title">Card title</h5>
+                           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                              additional content. This content is a little bit longer.</p>
+                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card mb-3" style="max-width: 540px;">
+                  <div class="row g-0">
+                     <div class="col-md-4">
+                        <img src="..." class="img-fluid rounded-start" alt="...">
+                     </div>
+                     <div class="col-md-8">
+                        <div class="card-body">
+                           <h5 class="card-title">Card title</h5>
+                           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                              additional content. This content is a little bit longer.</p>
+                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- //create space -->
+         <div class="create-space col-md-4" style="background-color: white; margin: 10px; border-radius: 1%;  ">
             <form style="margin: 10px ;">
                <label
-                  style="color: blue;  display: block;text-align: center; ; font-size: 24px ;font-weight: 800; ">SELECT
-                  USER</label>
+                  style="color: blue;  display: block;text-align: center; ; font-size: 24px ;font-weight: 800; ">CREATE
+                  SPACE</label>
                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for="date" class="form-label">Current date</label>
+                  <input type="datetime-local" class="form-control" id="date" aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                </div>
                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <label for="space" class="form-label">Space</label>
+                  <input type="text" class="form-control" id="space">
                </div>
                <div class="mb-3 form-check">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
