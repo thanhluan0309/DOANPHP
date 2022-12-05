@@ -7,8 +7,8 @@ const verifyToken = (req, res, next) => {
     return res.status(402).json({ success: false, message: "token not found" });
   }
   try {
-    const decoded = jwt.verify(token, process.env.Accestoken);
-    req.UserExit = decoded.UserExit;
+    const decoded = jwt.verify(token, process.env.Token);
+    req.userExist = decoded.userExist;
     next();
   } catch (Err) {
     console.log(Err);

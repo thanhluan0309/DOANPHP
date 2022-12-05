@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cores = require("cors");
+const routes = require("./router/routes")
 dotenv.config();
-
+app.use(cores());
 const routerUser = require("./router/user");
 const connect = async () => {
   try {
@@ -18,7 +20,9 @@ connect();
 app.get("/", (req, res) => {
   res.send("hello am backend PHP");
 });
+//ROUTES
 app.use("/user", routerUser);
+app.use("/api", routes);
 app.listen(process.env.PORT, () => {
   console.log("Sever is running at port :", process.env.PORT);
 });
