@@ -205,8 +205,8 @@
                </div>
             </div>
          </div>
-         <!-- //create space -->
-         <div class="create-space col-md-4" style="background-color: white; margin: 10px; border-radius: 1%;  ">
+         <!-- //create job -->
+         <div class="create-job col-md-4" style="background-color: white; margin: 10px; border-radius: 1%;  ">
             <form style="margin: 10px ;">
                <label
                   style="color: blue;  display: block;text-align: center; ; font-size: 24px ;font-weight: 800; ">CREATE
