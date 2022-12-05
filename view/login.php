@@ -47,7 +47,7 @@
                     <label for="password">Password</label>
                     <input type="password" id="password">
                     <a href="/DOANPHP/view/register.php">Register</a>
-                    <input type="submit" id="submit" value="Submit">
+                    <input type="submit" id="submit" value="Submit" >
                 </div>
             </div>
         </div>
