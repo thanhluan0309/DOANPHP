@@ -158,7 +158,7 @@ $listnonaccess = array_diff($list, $schedule['ListUserAccess']);
                     const respone = await updateSchedule(formaddschedule);
                     alert(`${respone.message}`)
                     if (respone.success) {
-                        return window.location.href = "http://localhost/DOANPHP/view/schedule.php";
+                        return window.location.href = "http://localhost/DOANPHP/view/schedule.php?month=" + <?php echo date("m") ?>;
                     }
                 } catch (error) {
                     console.log(error)

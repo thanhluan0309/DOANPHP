@@ -123,7 +123,7 @@ $data = json_decode($make_call, true)['alluser'];
         const respone = await addschedule(formaddschedule);
         alert(`${respone.message}`)
         if (respone.success) {
-          return window.location.href = "http://localhost/DOANPHP/view/schedule.php";
+          return window.location.href = "http://localhost/DOANPHP/view/schedule.php?month=" + <?php echo date("m") ?>;
         }
       }
     </script>

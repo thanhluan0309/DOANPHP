@@ -64,45 +64,49 @@
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             Thông tin lưu trữ
         </button>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Xem tháng
+        </button>
+        <?php
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $parts = parse_url($actual_link);
+        parse_str($parts['query'], $query);
 
-        <button class="btn btn-primary">"< </button>
-                <button class="btn btn-primary"> >" </button>
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Xem tuần
-                </button>
-                <?php
-                $month = date("m");
-                $n;
-                if ($month === 1 || $month === 3 || $month === 7) {
-                    echo "Tháng này có 31" . $month  . "<br>";
-                    $n = 31;
-                } else {
-                    $n = 30;
-                    echo "Tháng này có 30"  . "<br>";
-                }
+        $month = $query['month'];
 
-                ?>
+        $n;
+        if ($month == 1 || $month == 3 || $month == 5 || $month == 7 || $month == 8 || $month == 10 || $month == 12) {
+            echo "Tháng " . $month  . " này có 31 ngày" . "<br>";
+            $n = 31;
+        } else {
+            $n = 30;
+            echo "Tháng " . $month  . " này có 30 ngày" . "<br>";
+        }
 
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <div class="mt-3">
-                            <ul>
-                                <li><a class="dropdown-item" href="#">🕧 late</a></li>
-                                <li><a class="dropdown-item" href="#">📆 Off</a></li>
-                                <li><a class="dropdown-item" href="#">📚 Meeting</a></li>
-                            </ul>
-                        </div>
-                    </div>
+        ?>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <?php
+            for ($i = 1; $i <= 12; $i++) {
+            ?>
+                <button class="Button" onclick="window.location.href = 'http://localhost/DOANPHP/view/schedule.php?month=' + <?php echo $i ?>"><?php echo $i ?></button>
+            <?php } ?>
+        </ul>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="mt-3">
+                    <ul>
+                        <li><a class="dropdown-item" href="#">🕧 late</a></li>
+                        <li><a class="dropdown-item" href="#">📆 Off</a></li>
+                        <li><a class="dropdown-item" href="#">📚 Meeting</a></li>
+                    </ul>
                 </div>
+            </div>
+        </div>
     </div>
     <br />
     <div style="height: 1500px" class="FormSchedule">

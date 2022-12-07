@@ -13,7 +13,7 @@
 </body>
 <script>
     const redirect = () => {
-        window.location.href = "http://localhost/DOANPHP/view/schedule.php";
+        window.location.href = "http://localhost/DOANPHP/view/schedule.php?month=" + <?php echo date("m") ?>;
         localStorage.setItem("reload", true)
     }
 </script>
