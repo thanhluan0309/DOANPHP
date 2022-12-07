@@ -104,7 +104,8 @@ $listnonaccess = array_diff($list, $schedule['ListUserAccess']);
                     <p>SERCURITY</p>
                 </div>
                 <div class="col-lg-5 d-flex">
-                    <div class="form-check">
+                    <?php if ($query['ispublic'] == 1) {
+                        echo '<div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="public" checked>
                         <label class="form-check-label" for="public">
                             public
@@ -115,7 +116,24 @@ $listnonaccess = array_diff($list, $schedule['ListUserAccess']);
                         <label class="form-check-label" for="private">
                             private
                         </label>
+                    </div>';
+                    } else {
+                        echo '<div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="public" >
+                        <label class="form-check-label" for="public">
+                            public
+                        </label>
                     </div>
+                    <div class="form-check mx-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="private" checked>
+                        <label class="form-check-label" for="private">
+                            private
+                        </label>
+                    </div>';
+                    }
+
+                    ?>
+
                 </div>
             </div>
             <div class="row mb-3">

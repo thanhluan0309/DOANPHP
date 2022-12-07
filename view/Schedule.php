@@ -44,6 +44,7 @@
         $listscheduleprivate->title = $obj['title'];
         $listscheduleprivate->date = $obj['date'];
         $listscheduleprivate->content = $obj['content'];
+        $listscheduleprivate->ispublic = $obj['ispublic'];
         if (in_array($isuser, $obj['ListUserAccess'])) {
             array_push($listprivate, $listscheduleprivate);
         }
@@ -55,6 +56,7 @@
         $listschedulepublic->title = $obj['title'];
         $listschedulepublic->date = $obj['date'];
         $listschedulepublic->content = $obj['content'];
+        $listschedulepublic->ispublic = $obj['ispublic'];
         array_push($listpublic, $listschedulepublic);
     }
     ?>
@@ -112,7 +114,7 @@
     <div style="height: 1500px" class="FormSchedule">
         <?php
         $listall = array_merge($listprivate, $listpublic);
-        // print_r($listall);
+
         for ($i = 1; $i <= $n; $i++) {
             echo '<div class="schedule shadow border">
             <div class="schedule-Header border">
@@ -128,7 +130,7 @@
             $chuoi = $i . "/" . $month . "/" . "2022";
             foreach ($listall as $car) {
                 if ($chuoi === $car->date) {
-                    echo '<li data-value="' . $car->date . '"  onclick="editschedule(event)" id="' . $car->_id . '" class="schedule-Body_Item">
+                    echo '<li value="' . $car->ispublic . '" data-value="' . $car->date . '"  onclick="editschedule(event)" id="' . $car->_id . '" class="schedule-Body_Item">
                         ' . $car->title . '
                         <hr />
                     </li>';
@@ -141,7 +143,7 @@
         ?>
         <script>
             const editschedule = (event) => {
-                window.location.href = `http://localhost/DOANPHP/view/DetailSchedule.php?id=${event.target.id}&date=${document.getElementById(event.target.id).getAttribute('data-value')}`;
+                window.location.href = `http://localhost/DOANPHP/view/DetailSchedule.php?id=${event.target.id}&date=${document.getElementById(event.target.id).getAttribute('data-value')}&ispublic=${document.getElementById(event.target.id).getAttribute('value')}`;
             }
             const gotoaddschedule = (event) => {
                 window.location.href = "http://localhost/DOANPHP/view/addschedule.php?date=" + event.target.id;

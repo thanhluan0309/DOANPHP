@@ -194,7 +194,7 @@
       </script>
 
 
-      <button type="button" onclick="window.location.href='http://localhost/DOANPHP/view/schedule.php'" class="btn btn-custom btn-lg btn-block">Go back</button>
+      <button type="button" onclick="window.location.href=`http://localhost/DOANPHP/view/Schedule.php?month=<?php echo date('m') ?>`" class="btn btn-custom btn-lg btn-block">Go back</button>
       <button class="button" value="<?php echo  $query['id'] ?>" onclick="editschedule(event)" type="button">✏</button>
       <button type="button" value="<?php echo  $query['id'] ?>" onclick="removeschedule(event)">❌</button>
 
@@ -203,11 +203,11 @@
           if (confirm('Bạn có chắc sẽ hủy lịch không ???')) {
             await deletedSchedule(event.target.value)
           }
-          window.location.href = 'http://localhost/DOANPHP/view/schedule.php'
+          window.location.href = 'http://localhost/DOANPHP/view/Schedule.php?month=<?php echo date('m') ?>'
         }
 
         const editschedule = (event) => {
-          window.location.href = `http://localhost/DOANPHP/view/Editschedule.php?id=${event.target.value}&date=<?php echo $query['date'] ?>`;
+          window.location.href = `http://localhost/DOANPHP/view/Editschedule.php?id=${event.target.value}&date=<?php echo $query['date'] ?>&ispublic=<?php echo $query['ispublic'] ?>`;
         }
       </script>
     </form>

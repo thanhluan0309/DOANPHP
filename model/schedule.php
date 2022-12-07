@@ -5,6 +5,7 @@ class schedule
     public $title;
     public $date;
     public $content;
+    public $ispublic;
 }
 class scheduleprivate
 {
@@ -13,4 +14,5 @@ class scheduleprivate
     public $date;
     public $content;
     public $listprivate;
+    public $ispublic;
 }
