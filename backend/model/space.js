@@ -36,6 +36,9 @@ const spaceSchema = new Schema({
             ref: "Users"
         }
     ],
+    comments: [
+        {type: Schema.Types.ObjectId, ref: "Comment"}
+    ]
 }, {timestamps: true});
 
 module.exports = mongoose.model('Space', spaceSchema);

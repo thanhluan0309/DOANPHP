@@ -17,9 +17,7 @@ const taskSchema = new Schema({
         type: Boolean
     },
     space: {type: Schema.Types.ObjectId, ref: "Space"},
-    comments: [
-        {type: Schema.Types.ObjectId, ref: "Comment"}
-    ]
+    
 }, {timestamps: true});
 
 module.exports = mongoose.model('Task', taskSchema);

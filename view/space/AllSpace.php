@@ -106,7 +106,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">${item.spaceName}</h5>
                                             <p class="card-text">${item.title}</p>
-                                            <a href="http://localhost/DOANPHP/view/space/${item.spaceID}" class="btn btn-primary">View Space</a>
+                                            <a href="http://localhost/DOANPHP/view/space/Space.php?id=${item.spaceID}" class="btn btn-primary">View Space</a>
                                         </div>
                                     </div>
                                 </div>`;
