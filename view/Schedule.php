@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <?php include './navbar.php'; ?>
+
+
     <script>
         document.cookie = `username=${localStorage.getItem("username")}`;
         $(document).ready(function() {
@@ -21,7 +24,6 @@
         });
     </script>
     <?php
-    include("./setupBootstrap.php");
     include("../callApi/schedulecallApi.php");
     include("../model/schedule.php");
 
@@ -61,7 +63,7 @@
     }
     ?>
 
-    <div class="canvas">
+    <div style="margin-top: 23px" class="canvas">
 
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             Thông tin lưu trữ

@@ -46,6 +46,8 @@ $listnonaccess = array_diff($list, $schedule['ListUserAccess']);
 
 
 <body>
+    <?php include './navbar.php'; ?>
+
 
     <div class="container  mt-5 mb-5">
         <form class="bg-light p-4 m-auto" action="#">
