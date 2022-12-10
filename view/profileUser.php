@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +12,6 @@
 </head>
 <script src="../callApi/userCallApi.js">
 </script>
-
 <body style="background: rgb(225 220 220 / 25%);">
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
@@ -62,5 +60,4 @@
         }
     }
 </script>
-
 </html>
