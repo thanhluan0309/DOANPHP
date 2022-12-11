@@ -79,5 +79,40 @@ class userController {
       console.log(error);
     }
   }
+  async getUser(req, res) {
+    try {
+      const response = await User.findOne({ username: req.params.username });
+      response.length != 0 ?
+        res.status(200).json({ success: true, alluser: response })
+        :
+        res.status(404).send("Not found")
+    } catch (error) {
+      res.status(502).json("Bad Gateway")
+    }
+  }
+  async changePassword(req, res){
+    try{
+      const {username,password, newpassword} = req.body;
+      const response = await User.findOne({username:username});
+      response.length>0?
+      (
+        response = await User.findOne({username:username,password:password}),
+        response.length>0?
+        response = await User.updateOne({username:username},{$set: {password:newpassword}},function(err,res)
+        {
+          if (err) throw err;
+          res.status(200).json({resuilt:true,message:"Update success"})
+        })
+        :
+        response.status(500).json({resuilt:false,message:"Password not true"})
+      )
+      :
+      res.status(501).json({resuilt:false,message:"Not Implemented"});
+    }
+    catch(error)
+    {
+      res.status(502).json({resuilt:false,message:"Bad Gateway"})
+    }
+  }
 }
 module.exports = new userController();
