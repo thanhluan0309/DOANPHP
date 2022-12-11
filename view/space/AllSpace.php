@@ -46,18 +46,23 @@
                                     <option value="true">Private</option>
                                 </select>
                             </div>
-                            
+
                             <div class="mb-3">
                                 <label for="Members" class="col-form-label">Members:</label>
                                 <div style="display: flex; justify-content: space-between;">
-                                    <div style="height: 200px; width: 50%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;" id="first">
+                                    <div style="height: 200px; width: 50%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;"
+                                        id="first">
                                     </div>
                                     <div
                                         style="display: flex; flex-direction: column; margin: 0 8px; justify-content: space-around;">
-                                        <button style="border: 1px solid #ced4da; border-radius: 0.25rem;" id="moveRight">>></button>
-                                        <button style="border: 1px solid #ced4da; border-radius: 0.25rem;" id="moveLeft"><<</button>
+                                        <button style="border: 1px solid #ced4da; border-radius: 0.25rem;"
+                                            id="moveRight">>></button>
+                                        <button style="border: 1px solid #ced4da; border-radius: 0.25rem;"
+                                            id="moveLeft">
+                                            <<< /button>
                                     </div>
-                                    <div style="height: 200px; width: 50%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;" id="second"></div>
+                                    <div style="height: 200px; width: 50%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;"
+                                        id="second"></div>
                                 </div>
                             </div>
                         </form>
@@ -94,29 +99,29 @@
                     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
                 },
             })
-            .then((response) => response.json())
-            .then((data) => {
-                data.data.forEach(item => {
-                    if (item.title == "") {
-                        item.title = "&nbsp;"
-                    }
-                    content += `<div class="col-3 mb-1">
+                .then((response) => response.json())
+                .then((data) => {
+                    data.data.forEach(item => {
+                        if (item.title == "") {
+                            item.title = "&nbsp;"
+                        }
+                        content += `<div class="col-3 mb-1">
                                     <div class="card">
                                         <h5 class="card-header">Space ID: ${item.spaceID}</h5>
                                         <div class="card-body">
                                             <h5 class="card-title">${item.spaceName}</h5>
                                             <p class="card-text">${item.title}</p>
-                                            <a href="http://localhost/DOANPHP/view/space/Space.php?id=${item.spaceID}" class="btn btn-primary">View Space</a>
+                                            <a href="http://localhost/DOANPHP/DOANPHP/view/space/Space.php?id=${item.spaceID}" class="btn btn-primary">View Space</a>
                                         </div>
                                     </div>
                                 </div>`;
+                    });
+                    document.getElementById('spaces').innerHTML = content;
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    // console.error('Error:', error);
                 });
-                document.getElementById('spaces').innerHTML = content;
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
         }
         const getAllUser = () => {
             fetch('http://localhost:6969/user/all', {
@@ -126,21 +131,21 @@
                     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
                 },
             })
-            .then((response) => response.json())
-            .then((data) => {
-                data.data.forEach(item => {
-                    users += `<div id="${item._id + '1'}">
+                .then((response) => response.json())
+                .then((data) => {
+                    data.data.forEach(item => {
+                        users += `<div id="${item._id + '1'}">
                                     <input type="checkbox" class="btn-check" id="${item._id}" value="${item._id}" autocomplete="off">
                                     <label class="btn btn-outline-primary" for="${item._id}"
                                         style="width: 100%;">${item.username}</label><br>
                                 </div>`;
+                    });
+                    document.getElementById('first').innerHTML = users;
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    // console.error('Error:', error);
                 });
-                document.getElementById('first').innerHTML = users;
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
         }
         const createSpace = (payload) => {
             fetch('http://localhost:6969/api/space', {
@@ -151,17 +156,17 @@
                 },
                 body: JSON.stringify(payload)
             })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success == true) {
-                    window.location.reload();
-                } else {
-                    console.log(data.message);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success == true) {
+                        window.location.reload();
+                    } else {
+                        console.log(data.message);
+                    }
+                })
+                .catch((error) => {
+                    // console.error('Error:', error);
+                });
         }
         document.addEventListener('DOMContentLoaded', () => {
             getAllSpace();

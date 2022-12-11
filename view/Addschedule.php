@@ -156,8 +156,6 @@ $data = json_decode($make_call, true)['alluser'];
           "ListUserAccess"        => $ListUserAccess,
         );
         $make_call = $schedulecallapi->addschedule('POST', 'http://localhost:6969/schedule/', $data_array);
-
-        
       }
     </script>
     -->

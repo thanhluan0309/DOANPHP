@@ -9,6 +9,7 @@ app.use(cores());
 const routerUser = require("./router/user");
 const routerSchedule = require("./router/schedule");
 
+
 const connect = async () => {
   try {
     await mongoose.connect(process.env.url);
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 //ROUTES
 app.use("/user", routerUser);
 app.use("/schedule", routerSchedule);
+app.use("/api", routes);
 
 app.listen(process.env.PORT, () => {
   console.log("Sever is running at port :", process.env.PORT);
