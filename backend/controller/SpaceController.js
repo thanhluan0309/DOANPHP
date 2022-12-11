@@ -1,9 +1,10 @@
 const space = require('../model/space');
+const user = require('../model/user');
 
 const SpaceController = {
     getAllSpace: async (req, res) => {
         try {
-            const spaces = await space.find({$or: [{private: false}, {members: req.userExist}]}).populate('createdBy members tasks');
+            const spaces = await space.find({$or: [{private: false}, {members: req.userExist}]}).populate('createdBy members tasks comments');
             return res.status(200).json({success: true, data: spaces });
         } catch (error) {
             console.log(error);
@@ -12,11 +13,26 @@ const SpaceController = {
     getOneSpace: async (req, res) => {
         try {
             const spaceID = req.params.spaceID;
-            const existSpace = await space.findOne({spaceID: spaceID}).populate('createdBy members tasks');
+            
+            
+            const existSpace = await space.findOne({spaceID: spaceID}).populate([
+                {
+                    path: 'comments',
+                    populate: {
+                        path: 'cmtBy'
+                    }
+                },
+                {
+                    path: 'createdBy members tasks'
+                }
+            ]);
+            const members = await space.findOne({spaceID: spaceID});
+            const userNotInSpace = await user.find({_id :{$nin: members.members}});
             if (existSpace) {
                 return res.status(200).json({
                     success: true,
-                    space: existSpace
+                    space: existSpace,
+                    userNotInSpace: userNotInSpace
                 })
             } else {
                 return res.status(403).json({
@@ -34,6 +50,7 @@ const SpaceController = {
             let spaceName = req.body.spaceName;
             let title = req.body.title;
             let private = req.body.private;
+            let members = req.body.members;
             let createdBy = req.userExist;
             const existSpaceID = await space.findOne({spaceID: spaceID});
             if (!existSpaceID) {

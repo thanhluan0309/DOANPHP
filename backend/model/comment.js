@@ -11,9 +11,9 @@ const commentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Users"
     },
-    task: {
+    space: {
         type: Schema.Types.ObjectId,
-        ref: "Task"
+        ref: "Space"
     }
 }, {timestamps: true});
 

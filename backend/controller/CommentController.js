@@ -1,16 +1,16 @@
 const comment = require('../model/comment');
-const task = require('../model/task');
+const space = require('../model/space');
 
 const CommentController = {
     postAComment: async (req, res) => {
         try {
-            const newComment = new comment({content: req.body.content, cmtBy: req.userExist, task: req.body.task});
+            const newComment = new comment({content: req.body.content, cmtBy: req.userExist, space: req.body.space});
             const savedComment = await newComment.save();
-            if (req.body.task) {
-                await task.findById(req.body.task).updateOne({$push: {comments: savedComment._id}});
+            if (req.body.space) {
+                await space.findById(req.body.space).updateOne({$push: {comments: savedComment._id}});
                 return res.status(200).json({
                     success: true,
-                    task: savedComment,
+                    space: savedComment,
                 })
             } else {
                 return res.status(403).json({
@@ -57,7 +57,7 @@ const CommentController = {
             else {
                 return res.status(403).json({
                     success: false,
-                    message: "Delete task fail",
+                    message: "Delete comment fail",
                 })
             }
         } catch (error) {
