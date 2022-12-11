@@ -8,8 +8,7 @@ const verifyToken = (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, process.env.Token);
-
-    req.UserExit = decoded.userExist;
+    req.userExist = decoded.userExist;
     next();
   } catch (Err) {
     console.log(Err);
