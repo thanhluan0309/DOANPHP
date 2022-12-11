@@ -1,8 +1,10 @@
-const login = async (req, res) => {
+//add schedule
+const addschedule = async (req, res) => {
   try {
     const config = {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
@@ -10,7 +12,7 @@ const login = async (req, res) => {
     };
     try {
       const fetchResponse = await fetch(
-        `http://localhost:6969/user/login`,
+        `http://localhost:6969/schedule/`,
         config
       );
       const data = await fetchResponse.json();
@@ -23,11 +25,12 @@ const login = async (req, res) => {
     console.log(error);
   }
 };
-//register
-const register = async (req, res) => {
+//add update schedule
+const updateSchedule = async (req, res) => {
+  console.log("req", req);
   try {
     const config = {
-      method: "POST",
+      method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -35,9 +38,12 @@ const register = async (req, res) => {
       body: JSON.stringify(req),
     };
     try {
-      const fetchResponse = await fetch(`http://localhost:6969/user/`, config);
+      const fetchResponse = await fetch(
+        `http://localhost:6969/schedule/${req.id}`,
+        config
+      );
       const data = await fetchResponse.json();
-      console.log("data", data);
+
       return data;
     } catch (e) {
       return e;
@@ -46,19 +52,23 @@ const register = async (req, res) => {
     console.log(error);
   }
 };
-const getAlluser = async (req, res) => {
+//add schedule
+const deletedSchedule = async (req, res) => {
   try {
     const config = {
-      method: "GET",
+      method: "DELETE",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     };
     try {
-      const fetchResponse = await fetch(`http://localhost:6969/user/`, config);
+      const fetchResponse = await fetch(
+        `http://localhost:6969/schedule/${req}`,
+        config
+      );
       const data = await fetchResponse.json();
-      console.log("data", data);
+
       return data;
     } catch (e) {
       return e;

@@ -41,12 +41,10 @@ class userController {
     try {
       const { username, password } = req.body;
       if ((!username, !password)) {
-        return res
-          .status(400)
-          .json({
-            success: false,
-            message: "Username and Password need required",
-          });
+        return res.status(400).json({
+          success: false,
+          message: "Username and Password need required",
+        });
       } else {
         const userlogin = await User.findOne({
           username: username,
@@ -73,10 +71,10 @@ class userController {
       console.log(error);
     }
   }
-  async getAllUser(req, res) {
+  async getAlluser(req, res) {
     try {
-      const spaces = await User.find();
-        return res.status(200).json({success: true, data: spaces });
+      const response = await User.find();
+      return res.status(200).json({ success: true, alluser: response });
     } catch (error) {
       console.log(error);
     }
