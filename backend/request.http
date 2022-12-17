@@ -1,0 +1,59 @@
+//Register 
+###
+POST http://localhost:6969/user/
+Content-Type: application/json
+
+{
+    "username":"luan123",
+    "password":"luan"
+}
+//get all user 
+###
+GET http://localhost:6969/user/
+
+//Login
+###
+POST http://localhost:6969/user/login
+Content-Type: application/json
+
+{
+    "username":"luan123",
+    "password":"luan"
+}
+
+
+//add schedule
+###
+POST http://localhost:6969/schedule/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg0MjM3ZGM5MGZiYmRiMjlkNjhkMDkiLCJpYXQiOjE2Njk3NDI4MDZ9.daoOBJnhFCqFmfsdYnZ39QYWHQ5DtgH_BedwFuYnxPw
+
+{
+    "title":"off",
+    "content":"Ban viec hoc tren truong",
+    "ispublic":true,
+    "ListUserAccess":[]
+}
+//get all schedule
+###
+GET http://localhost:6969/schedule/
+
+
+//get one schedule
+###
+GET http://localhost:6969/schedule/63885ed3b3dcea19efc4fc9b
+
+//update one schedule
+###
+PUT http://localhost:6969/schedule/63886683b3dcea19efc4fcd4
+Content-Type: application/json
+
+{
+    "title":"Niem dam me di tre",
+    "content":"Ban viec hoc tren truong",
+    "ispublic":true,
+    "ListUserAccess":[]
+}
+//deleted one schedule
+###
+DELETE http://localhost:6969/schedule/63886683b3dcea19efc4fcd4
