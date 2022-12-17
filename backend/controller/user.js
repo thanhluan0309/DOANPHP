@@ -74,7 +74,7 @@ class userController {
   async getAlluser(req, res) {
     try {
       const response = await User.find();
-      return res.status(200).json({ success: true, alluser: response });
+      return res.status(200).json({ success: true, alluser: response});
     } catch (error) {
       console.log(error);
     }
@@ -90,28 +90,33 @@ class userController {
       res.status(502).json("Bad Gateway")
     }
   }
-  async changePassword(req, res){
-    try{
-      const {username,password, newpassword} = req.body;
-      const response = await User.findOne({username:username});
-      response.length>0?
-      (
-        response = await User.findOne({username:username,password:password}),
-        response.length>0?
-        response = await User.updateOne({username:username},{$set: {password:newpassword}},function(err,res)
-        {
-          if (err) throw err;
-          res.status(200).json({resuilt:true,message:"Update success"})
-        })
-        :
-        response.status(500).json({resuilt:false,message:"Password not true"})
-      )
-      :
-      res.status(501).json({resuilt:false,message:"Not Implemented"});
+  async changePassword(req, res) {
+    try {
+      const { username, password, newpassword } = req.body;
+      const response = await User.findOne({ username: username });
+      if (response) {
+        const res_find = await User.findOne({ username: username, password: password })
+        res_find?
+          User.updateOne({username:res_find.username},({$set:{password:newpassword}}), function (err, resuilt) {
+            if (err)
+            {
+              res.status(501).json({ resuilt: false, message: "Not Implemented, have an error when update query." });
+            }
+            else
+            {
+              res.status(200).json({ resuilt: false, message: "Update success" });
+            }
+          })
+          :
+          res.status(500).json({ resuilt: false, message: "Password not true" })
+      }
+      else {
+        res.status(501).json({ resuilt: false, message: "Not Implemented" });
+      }
     }
-    catch(error)
-    {
-      res.status(502).json({resuilt:false,message:"Bad Gateway"})
+    catch (error) {
+      console.log(error)
+      res.status(502).json({ resuilt: false, message: "Bad Gateway" })
     }
   }
 }

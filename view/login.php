@@ -37,7 +37,7 @@
                     <label for="password">Password</label>
                     <input type="password" id="password">
                     <a href="/DOANPHP/view/register.php">Register</a>
-                    <input type="button" onclick="handlelogin()" id="submit" value="Submit">
+                    <input type="button" style="border: 1px solid dimgray; border-radius: 10px; " onclick="handlelogin()" id="submit" value="Submit">
                 </div>
             </div>
         </div>

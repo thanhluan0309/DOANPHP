@@ -16,7 +16,7 @@
             display: none;
             position: fixed;
             bottom: 40px;
-            right: 400px;
+            right: 500px;
             border: 3px solid black;
             z-index: 9;
         }
@@ -72,7 +72,6 @@
 <script src="../callApi/userCallApi.js">
 </script>
 <?php include './navbar.php'; ?>
-
 <body style="background: rgb(225 220 220 / 25%);">
     <div class="form-popup" id="myForm">
         <div class="form-container" method="post">
@@ -82,16 +81,16 @@
             <input type="password" placeholder="Enter Email" id="password" required>
 
             <label for="psw"><b>New password</b></label>
-            <input type="password" placeholder="Enter Password" id="newpassword" required>
+            <input type="password" placeholder="Enter Password" id="new_password" required>
 
             <label for="psw"><b>Re-new password</b></label>
-            <input type="password" placeholder="Enter Password" id="renewpassword" required>
+            <input type="password" placeholder="Enter Password" id="re-new_password" required>
 
-            <button class="btn" type="button" onclick="handlelogin()" id="submit">Change</button>
+            <button class="btn" type="button" onclick="handleeditpass()" id="submit">Change</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </div>
     </div>
-    <div class="container rounded bg-white mt-5 mb-5">
+    <div class="container rounded bg-white mt-5 mb-5" id="bodybackground">
         <div class="row">
             <div class="col-sm-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -101,7 +100,7 @@
                             document.write(localStorage.getItem('username'));
                         </script>
                     </span>
-                   
+                    
                 </div>
             </div>
             <div class="col-sm-9 border-right">
@@ -121,8 +120,6 @@
                             <button class="form-control" onclick="openForm()">Change passwrod</button>
                         </div>
                     </div>
-                    
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
                 </div>
             </div>
         </div>
@@ -130,23 +127,21 @@
     </div>
     </div>
 </body>
-<script>
-const handlelogin = async () => {
-        if (document.getElementById('newpassword').value != document.getElementById('renewpassword').value) {
-            return alert(document.getElementById('password').value);
-        }
-
-        const formchangepassword = {
+<script> 
+const handleeditpass = async () => {
+    if(document.getElementById("new_password").value!=document.getElementById("re-new_password").value)
+    {
+        return alert("re-new password not true");
+    }
+    const formchangepass = {
             username: localStorage.getItem('username'),
             password: document.getElementById('password').value,
-            password: document.getElementById('newpassword').value
+            newpassword: document.getElementById('new_password').value
         }
-        const res = await changepassword(formchangepassword)
-
-        const res = await login(formchangepassword)
-        if (res.success) {
+    const res = await changepassword(formchangepass)
+    if (res.success) {
             alert(`${res.message}`)
-            //script if true
+            localStorage.setItem("password",res.userLogin.password)
         } else {
             alert(`${res.message}`)
         }
@@ -156,10 +151,14 @@ const handlelogin = async () => {
    
     function openForm() {
         document.getElementById("myForm").style.display = "block";
+        document.getElementById("bodybackground").style.backgroundColor = "black"
+        document.getElementById("bodybackground").style.opacity = 0.2;
     }
 
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
+        document.getElementById("bodybackground").style.backgroundColor =null;
+        document.getElementById("bodybackground").style.opacity = 1;
     }
 </script>
 
