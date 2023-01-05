@@ -48,16 +48,21 @@
                             </div>
                             
                             <div class="mb-3">
-                                <label for="Members" class="col-form-label">Members:</label>
                                 <div style="display: flex; justify-content: space-between;">
-                                    <div style="height: 200px; width: 50%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;" id="first">
+                                    <div style="height: 200px; width: 50%; ">
+                                        User
+                                        <div id="first" style="height: 100%;overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;">
+                                        </div>
                                     </div>
                                     <div
                                         style="display: flex; flex-direction: column; margin: 0 8px; justify-content: space-around;">
                                         <button style="border: 1px solid #ced4da; border-radius: 0.25rem;" id="moveRight">>></button>
                                         <button style="border: 1px solid #ced4da; border-radius: 0.25rem;" id="moveLeft"><<</button>
                                     </div>
-                                    <div style="height: 200px; width: 50%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;" id="second"></div>
+                                    <div style="height: 200px; width: 50%; ">
+                                    Members
+                                        <div id="second" style="height: 100%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -156,7 +161,7 @@
                 if (data.success == true) {
                     window.location.reload();
                 } else {
-                    console.log(data.message);
+                    alert(data.message);
                 }
             })
             .catch((error) => {

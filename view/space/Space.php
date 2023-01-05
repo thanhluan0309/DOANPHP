@@ -76,16 +76,21 @@
                             </div>
                             
                             <div class="mb-3">
-                                <label for="Members" class="col-form-label">Members:</label>
                                 <div style="display: flex; justify-content: space-between;">
-                                    <div style="height: 200px; width: 50%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;" id="first">
+                                    <div style="height: 200px; width: 50%; ">
+                                        User
+                                        <div id="first" style="height: 100%;overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;">
+                                        </div>
                                     </div>
                                     <div
                                         style="display: flex; flex-direction: column; margin: 0 8px; justify-content: space-around;">
                                         <button style="border: 1px solid #ced4da; border-radius: 0.25rem;" id="moveRight">>></button>
                                         <button style="border: 1px solid #ced4da; border-radius: 0.25rem;" id="moveLeft"><<</button>
                                     </div>
-                                    <div style="height: 200px; width: 50%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;" id="second"></div>
+                                    <div style="height: 200px; width: 50%; ">
+                                    Members
+                                        <div id="second" style="height: 100%; overflow-y: scroll; border: 1px solid #ced4da; border-radius: 0.25rem;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -231,6 +236,27 @@
                     const urlParams = new URLSearchParams(queryString);
                     getSpace(urlParams.get('id'));
                     alert('Delete task success');
+                } else {
+                    console.log(data.message);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+        const deleteSpace = (spaceID) => {
+            fetch(`http://localhost:6969/api/space/${spaceID}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
+                }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success == true) {
+                    alert('Delete space success');
+                    window.location.href = 'http://localhost/DOANPHP/view/space/AllSpace.php'
                 } else {
                     console.log(data.message);
                 }
@@ -388,7 +414,7 @@
                 document.getElementById('members').innerHTML = members;
                 document.getElementById('comments').innerHTML = comments;
                 document.getElementById('tasks').innerHTML = tasks;
-                document.getElementById('spaceID').innerHTML =`Space: ${data.space.spaceName} <button class="btn btn-success" style="margin-left: 8px" data-bs-target="#editSpace" data-bs-toggle="modal"><img src="./edit.png" width="18"/></button>`;
+                document.getElementById('spaceID').innerHTML =`Space: ${data.space.spaceName} <button class="btn btn-success" style="margin-left: 8px" data-bs-target="#editSpace" data-bs-toggle="modal"><img src="./edit.png" width="18"/></button><button class="btn btn-danger" style="margin-left: 8px" onclick="deleteSpace('${spaceID}')"><img style="filter: invert(100%);" src="./trash.png" width="18"/></button>`;
                 console.log('Success:', data);
             })
             .catch((error) => {

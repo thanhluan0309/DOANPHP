@@ -52,6 +52,7 @@ const SpaceController = {
             let private = req.body.private;
             let members = req.body.members;
             let createdBy = req.userExist;
+            req.body.members.push(req.userExist)
             const existSpaceID = await space.findOne({spaceID: spaceID});
             if (!existSpaceID) {
                 let spaceObj = {
