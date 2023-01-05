@@ -14,7 +14,7 @@
         width: 100%;
         display: flex;
         margin-top: 10%;
-    }
+    } 
 
     .dashboard-itemSchedules {
         margin: auto;
@@ -39,7 +39,6 @@
 
 <body>
     <?php include './navbar.php'; ?>
-
     <div class="dasboard">
         <button class="border shadow dashboard-itemSpace" onclick=""></button>
         <button class="border shadow dashboard-itemSchedules" onclick="redirect()"></button>

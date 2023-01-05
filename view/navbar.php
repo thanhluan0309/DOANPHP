@@ -34,6 +34,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">Setting</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
                             <li class="dropdown-item" onclick="logout()">Logout</li>
+                            <li class="dropdown-item" onclick="profile()">Profile</li>
                         </ul>
                     </li>
                 </ul>
@@ -47,6 +48,9 @@
         const logout = () => {
             window.location.href = "http://localhost/DOANPHP/view/login.php";
             localStorage.clear();
+        }
+        const profile = () => {
+            window.location.href = "http://localhost/DOANPHP/view/profileUser.php";
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
