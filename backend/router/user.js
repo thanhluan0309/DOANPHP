@@ -8,4 +8,6 @@ router.post("/", user.userRegister);
 router.post("/login", user.userLogin);
 router.get("/all",verifyToken ,user.getAllUser);
 
+router.get("/", user.getAlluser);
+router.post("/changepassword", user.changePassword);
 module.exports = router;

@@ -1,0 +1,22 @@
+.cssforlistuser {
+    background-color: white;
+    min-height: 150px;
+    max-height: 150px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    border-style: groove;
+    width: 500px;
+    list-style: none;
+    padding: 0px 20px;
+}
+.cssforitemuser {
+    margin-bottom: 5px;
+}
+.cssforitemuser:hover {
+    background-color: rgb(206, 236, 236);
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.schedule-Body_Item {
+    background-color:aqua;
+}
