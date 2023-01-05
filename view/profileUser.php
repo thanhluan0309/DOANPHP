@@ -78,13 +78,13 @@
             <h5 style="text-align: center;">Change password</h5>
 
             <label for="email"><b>Password</b></label>
-            <input type="password" placeholder="Enter Email" id="password" required>
+            <input type="password" placeholder="Current Password" id="password" required>
 
             <label for="psw"><b>New password</b></label>
-            <input type="password" placeholder="Enter Password" id="new_password" required>
+            <input type="password" placeholder="New Password" id="new_password" required>
 
             <label for="psw"><b>Re-new password</b></label>
-            <input type="password" placeholder="Enter Password" id="re-new_password" required>
+            <input type="password" placeholder="Repeat New Password" id="re-new_password" required>
 
             <button class="btn" type="button" onclick="handleeditpass()" id="submit">Change</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
