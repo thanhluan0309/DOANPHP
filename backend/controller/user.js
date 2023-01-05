@@ -71,6 +71,14 @@ class userController {
       console.log(error);
     }
   }
+  async getAllUser(req, res) {
+    try {
+      const spaces = await User.find({'_id': {$ne : req.userExist}});
+        return res.status(200).json({success: true, data: spaces });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   async getAlluser(req, res) {
     try {
       const response = await User.find();

@@ -40,13 +40,17 @@
 <body>
     <?php include './navbar.php'; ?>
     <div class="dasboard">
-        <button class="border shadow dashboard-itemSpace" onclick=""></button>
+        <button class="border shadow dashboard-itemSpace" onclick="redirect0()"></button>
         <button class="border shadow dashboard-itemSchedules" onclick="redirect()"></button>
     </div>
 </body>
 <script>
     const redirect = () => {
         window.location.href = "http://localhost/DOANPHP/view/schedule.php?month=" + <?php echo date("m") ?>;
+        localStorage.setItem("reload", true)
+    }
+    const redirect0 = () => {
+        window.location.href = "http://localhost/DOANPHP/view/space/AllSpace.php";
         localStorage.setItem("reload", true)
     }
 </script>
