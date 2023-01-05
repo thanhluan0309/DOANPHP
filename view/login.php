@@ -37,7 +37,7 @@
                     <label for="password">Password</label>
                     <input type="password" id="password">
                     <a href="/DOANPHP/view/register.php">Register</a>
-                    <input type="button" style="border: 1px solid dimgray; border-radius: 10px; " onclick="handlelogin()" id="submit" value="Submit">
+                    <input type="button" onclick="handlelogin()" id="submit" value="Submit">
                 </div>
             </div>
         </div>
@@ -46,7 +46,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 <script>
-    temp("asdasdas");
+    const handlelogin = async () => {
+        const formlogin = {
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+        }
+        const res = await login(formlogin)
+
+        if (res.success) {
+            alert(`${res.message}`)
+            localStorage.setItem("token", res.accesstoken)
+            localStorage.setItem("username", res.userLogin.username)
+            window.location.href = "http://localhost/DOANPHP/view/dashboard.php";
+        } else {
+            alert(`${res.message}`)
+        }
+    }
 </script>
 
 </html>

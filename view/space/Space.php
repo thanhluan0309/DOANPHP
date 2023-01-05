@@ -40,7 +40,7 @@
 
 <body>
     <?php
-    include "../layout/header.php";
+    include "../navbar.php";
     ?>
     <div class="ms-3 me-3">
 
@@ -129,7 +129,7 @@
                             <input type="text" class="form-control" id="TaskID" readonly>
                         </div>
                         <div class="mb-1">
-                            <label for="TaskName" class="col-form-label">Space Name:</label>
+                            <label for="TaskName" class="col-form-label">Task Name:</label>
                             <input type="text" class="form-control" id="TaskName"></input type="text">
                         </div>
                         <div class="mb-1">
@@ -180,7 +180,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
+                    'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(payload)
             })
@@ -203,7 +203,7 @@
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
+                    'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(payload)
             })
@@ -226,7 +226,7 @@
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
+                    'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 }
             })
             .then((response) => response.json())
@@ -249,7 +249,7 @@
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
+                    'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 }
             })
             .then((response) => response.json())
@@ -322,7 +322,7 @@
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
+                    'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(payload)
             })
@@ -346,7 +346,7 @@
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
+                    'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 },
             })
             .then((response) => response.json())
@@ -430,7 +430,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRXhpc3QiOiI2Mzg2M2Q0YWRhZWNiNTY0N2MyNzcxMzAiLCJpYXQiOjE2Njk4MTk1NTN9.VD2e_VALaTCnFacFZJAF2a1hy_XDsmWLLQ5eV1dvnmM'
+                    'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 },
                 body: JSON.stringify(payload)
             })
